@@ -281,6 +281,16 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
+      },
+      "Dominio/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Dominio.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dominio.dll": {}
+        }
       }
     }
   },
@@ -721,10 +731,16 @@
         "system.diagnostics.diagnosticsource.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Dominio/1.0.0": {
+      "type": "project",
+      "path": "../Dominio/Dominio.csproj",
+      "msbuildProject": "../Dominio/Dominio.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Dominio >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.7",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
     ]
@@ -761,7 +777,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Desenvolvimento\\Api\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Desenvolvimento\\Api\\Dominio\\Dominio.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

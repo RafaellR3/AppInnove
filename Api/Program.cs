@@ -1,5 +1,8 @@
+using Aplicacao.Usuarios;
+using Dominio.Usuarios;
 using Microsoft.EntityFrameworkCore;
 using Repositorio.Infra;
+using Repositorio.Usuarios;
 
 namespace Api
 {
@@ -8,7 +11,13 @@ namespace Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddHttpContextAccessor();
 
+
+            builder.Services.Scan(scan => scan.FromAssembliesOf(typeof(Usuario), typeof(RepUsuario), typeof(AplicUsuario))
+                .AddClasses()
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
