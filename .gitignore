@@ -53,3 +53,13 @@ dkms.conf
 
 # debug information files
 *.dwo
+/.vs/Api/FileContentIndex
+/Api/obj/Debug/net8.0/Api.AssemblyInfo.cs
+/Api/obj/Debug/net8.0/Api.AssemblyInfoInputs.cache
+/Api/obj/Debug/net8.0/Api.csproj.AssemblyReference.cache
+/Aplicacao/obj/Debug/net8.0/Aplicacao.AssemblyInfo.cs
+/Aplicacao/obj/Debug/net8.0/Aplicacao.AssemblyInfoInputs.cache
+/Dominio/obj/Debug/net8.0/Dominio.AssemblyInfo.cs
+/Dominio/obj/Debug/net8.0/Dominio.AssemblyInfoInputs.cache
+/Repositorio/obj/Debug/net8.0/Repositorio.AssemblyInfo.cs
+/Repositorio/obj/Debug/net8.0/Repositorio.AssemblyInfoInputs.cache
