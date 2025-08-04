@@ -1,11 +1,6 @@
 ﻿using Dominio.Usuarios;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repositorio.Config.Ef.Usuarios
 {
@@ -19,7 +14,7 @@ namespace Repositorio.Config.Ef.Usuarios
 
             builder.Property(u => u.Id)
                 .HasColumnName("id")
-                .HasDefaultValueSql("uuid_generate_v4()");
+                .ValueGeneratedNever();
 
             builder.Property(u => u.CodigoERP)
                 .HasColumnName("id_erp")
