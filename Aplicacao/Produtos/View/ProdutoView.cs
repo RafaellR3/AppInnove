@@ -1,4 +1,6 @@
-﻿namespace Aplicacao.Produtos.View
+﻿using Dominio.Produtos;
+
+namespace Aplicacao.Produtos.View
 {
     public class ProdutoView 
     {
@@ -12,5 +14,22 @@
         public DateTime UpdatedAt { get; set; }
         public string Imagem { get; set; }
         public bool Ativo { get; set; }
+
+        public static ProdutoView Novo(Produto produto)
+        {
+            return new ProdutoView
+            {
+                Id = produto.Id,
+                CodigoERP = produto.CodigoERP,
+                Nome = produto.Nome,
+                Descricao = produto.Descricao,
+                Preco = produto.Preco,
+                Estoque = produto.Estoque,
+                CreatedAt = produto.DataCriacao,
+                UpdatedAt = produto.DataAtualizacao,
+                Imagem = produto.Imagem,
+                Ativo = produto.Ativo
+            };
+        }
     }
 }
