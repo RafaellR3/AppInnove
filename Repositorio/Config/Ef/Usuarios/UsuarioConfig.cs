@@ -8,7 +8,7 @@ namespace Repositorio.Config.Ef.Usuarios
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("USUARIO");
+            builder.ToTable("usuario");
 
             builder.HasKey(u => u.Id);
 

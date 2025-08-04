@@ -100,3 +100,5 @@ dkms.conf
 /Repositorio/obj/Debug/net8.0/refint/Repositorio.dll
 /Repositorio/obj/Debug/net8.0/Reposito.F4C96B80.Up2Date
 /Repositorio/obj/Debug/net8.0
+/Api/obj/Debug/net8.0/Api.csproj.BuildWithSkipAnalyzers
+/Dominio/obj/Debug/net8.0

@@ -1,6 +1,9 @@
+using Api.Extencao;
 using Aplicacao.Usuarios;
+using Dominio.Infra;
 using Dominio.Usuarios;
 using Microsoft.EntityFrameworkCore;
+using Repositorio;
 using Repositorio.Infra;
 using Repositorio.Usuarios;
 
@@ -11,6 +14,7 @@ namespace Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddApplicationDbContext(builder);
             builder.Services.AddHttpContextAccessor();
 
 
@@ -19,15 +23,26 @@ namespace Api
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
 
+            builder.Services.AddScoped<Contexto, ContextoBanco>();
+            builder.Services.AddScoped(typeof(IRepBase<>), typeof(RepBase<>));
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddControllers();
 
-            IConfiguration configuration = builder.Configuration;
-            var conexao = configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<Contexto>(options =>
-                    options.UseNpgsql(conexao));
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "AllowAny",
+                    x =>
+                    {
+                        x.AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .SetIsOriginAllowed(_ => true)
+                            .AllowCredentials();
+                    });
+            });
 
             var app = builder.Build();
 

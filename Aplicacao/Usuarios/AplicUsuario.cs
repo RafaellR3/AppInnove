@@ -12,23 +12,10 @@ namespace Aplicacao.Usuarios
             _repUsuario = repUsuario;
         }
 
-
         public List<UsuarioView> Recuperar()
         {
             var query = _repUsuario.Recuperar();
-            return query.Select(p => new UsuarioView
-            {
-                CodigoERP = p.CodigoERP,
-                Ativo = p.Ativo,
-                CreatedAt = DateTime.Now,
-                Email = p.Email,
-                Nome = p.Nome,
-                SenhaHash = p.SenhaHash,
-                UpdatedAt = DateTime.Now
-            }).ToList();
-
+            return UsuarioView.Novo([.. query]);
         }
-    }
-
-   
+    }   
 }

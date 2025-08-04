@@ -28,5 +28,6 @@ namespace Repositorio.Infra
         public virtual void ModelCreating(ModelBuilder modelBuilder)
         {
         }
+     
     }
 }
