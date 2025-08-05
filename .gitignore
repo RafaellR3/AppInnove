@@ -102,3 +102,4 @@ dkms.conf
 /Repositorio/obj/Debug/net8.0
 /Api/obj/Debug/net8.0/Api.csproj.BuildWithSkipAnalyzers
 /Dominio/obj/Debug/net8.0
+/.vs/ProjectEvaluation

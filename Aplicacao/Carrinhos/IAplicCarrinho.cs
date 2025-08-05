@@ -6,5 +6,6 @@ namespace Aplicacao.Carrinhos
     public interface IAplicCarrinho: IAplicBase
     {
         List<CarrinhoView> Recuperar();
+        CarrinhoView RecuperarPorUsuario(Guid codigoUsuario);
     }
 }

@@ -28,5 +28,10 @@ namespace Aplicacao.Carrinhos
                 Itens = CarrinhoItemView.Novo(p.Itens)    
             })];
         }
+        public CarrinhoView RecuperarPorUsuario(Guid codigoUsuario)
+        {
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.CodigoUsuario == codigoUsuario);
+            return CarrinhoView.Novo(carrinho);
+        }
     }
 }
