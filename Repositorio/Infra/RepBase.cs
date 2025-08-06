@@ -1,5 +1,7 @@
 ﻿using Dominio.Infra;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 
 namespace Repositorio.Infra
@@ -110,6 +112,66 @@ namespace Repositorio.Infra
         public bool Any(Expression<Func<TEntidade, bool>> exp)
         {
             return DbSet.Any(exp);
+        }
+
+        public void Inserir(TEntidade obj)
+        {
+            Inserir(new List<TEntidade> { obj });
+        }
+
+        public void Inserir(List<TEntidade> objs)
+        {
+            if (objs != null)
+            {
+                DbSet.AddRange(objs);
+            }
+        }
+
+        public void Persistir()
+        {
+            try
+            {
+                foreach (object item in from e in Db.ChangeTracker.Entries()
+                                        where e.State == EntityState.Added || e.State == EntityState.Modified
+                                        select e.Entity)
+                {
+                    ValidationContext validationContext = new ValidationContext(item);
+                    Validator.ValidateObject(item, validationContext);
+                }
+
+                Db.SaveChanges();
+            }
+            catch (DbUpdateException exp)
+            {
+                RejectChanges();
+                throw new Exception(exp.Message);
+            }
+            catch (ValidationException exp2)
+            {
+                RejectChanges();
+                throw new Exception(exp2.Message);
+            }
+        }
+        public void RejectChanges()
+        {
+            foreach (EntityEntry item in (from x in Db.ChangeTracker.Entries()
+                                          where x.State != EntityState.Unchanged
+                                          select x).ToList())
+            {
+                switch (item.State)
+                {
+                    case EntityState.Modified:
+                        item.CurrentValues.SetValues(item.OriginalValues);
+                        item.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        item.State = EntityState.Detached;
+                        break;
+                    case EntityState.Deleted:
+                        item.State = EntityState.Unchanged;
+                        break;
+                }
+            }
         }
     }    
 }

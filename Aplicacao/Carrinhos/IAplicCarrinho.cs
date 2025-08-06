@@ -1,5 +1,7 @@
-﻿using Aplicacao.Carrinhos.View;
+﻿using Aplicacao.Carrinhos.Dto;
+using Aplicacao.Carrinhos.View;
 using Aplicacao.Infra;
+using Dominio.Carrinhos.Itens;
 
 namespace Aplicacao.Carrinhos
 {
@@ -7,5 +9,7 @@ namespace Aplicacao.Carrinhos
     {
         List<CarrinhoView> Recuperar();
         CarrinhoView RecuperarPorUsuario(Guid codigoUsuario);
+        CarrinhoView AdicionarItem(AdicionarItemCarrinhoDto dto);
+        CarrinhoView AlterarQuantidadeItem(AlterarQuantItemCarrinhoDto dto);
     }
 }

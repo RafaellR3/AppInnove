@@ -1,18 +1,29 @@
-﻿using Aplicacao.Carrinhos.View;
-using Aplicacao.Produtos.View;
+﻿using Aplicacao.Carrinhos.Dto;
+using Aplicacao.Carrinhos.View;
 using Aplicacao.Usuarios.View;
 using Dominio.Carrinhos;
 using Dominio.Carrinhos.Itens;
 using Dominio.Produtos;
+using Dominio.Usuarios;
+using System.Data;
 
 namespace Aplicacao.Carrinhos
 {
     public class AplicCarrinho : IAplicCarrinho
     {
-        private IRepCarrinho _repCarrinho;
-        public AplicCarrinho(IRepCarrinho repCarrinho)
+        private readonly IRepCarrinho _repCarrinho;
+        private readonly IRepProduto _repProduto;
+        private readonly IRepCarrinhoItem _repCarrinhoItem;
+        private readonly IRepUsuario _repUsuario;
+        public AplicCarrinho(IRepCarrinho repCarrinho,
+                             IRepProduto repProduto,
+                             IRepCarrinhoItem repCarrinhoItem,
+                             IRepUsuario repUsuario)
         {
             _repCarrinho = repCarrinho;
+            _repProduto = repProduto;
+            _repCarrinhoItem = repCarrinhoItem;
+            _repUsuario = repUsuario;
         }
 
         public List<CarrinhoView> Recuperar()
@@ -28,10 +39,65 @@ namespace Aplicacao.Carrinhos
                 Itens = CarrinhoItemView.Novo(p.Itens)    
             })];
         }
+
         public CarrinhoView RecuperarPorUsuario(Guid codigoUsuario)
         {
+            var usuario = _repUsuario.FirstOrDefault(p => p.Id == codigoUsuario);
+            if (usuario == null)
+                throw new Exception($"Usuário de código {codigoUsuario} não localizado.");
+
             var carrinho = _repCarrinho.FirstOrDefault(p => p.CodigoUsuario == codigoUsuario);
+            if (carrinho == null)
+            {
+                carrinho = new Carrinho
+                {
+                    CodigoUsuario = usuario.Id,
+                    Usuario = usuario
+                };
+                _repCarrinho.Inserir(carrinho);
+                _repCarrinho.Persistir();
+            }
             return CarrinhoView.Novo(carrinho);
+        }
+
+        public CarrinhoView AdicionarItem(AdicionarItemCarrinhoDto dto)
+        {
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.Id == dto.CodigoCarrinho);
+            if (carrinho == null)
+                throw new Exception($"Carrinho de código {dto.CodigoCarrinho} não localizado.");
+
+            var produto = _repProduto.FirstOrDefault(p => p.Id == dto.CodigoProduto);
+            if (produto == null)
+                throw new Exception($"Produto de código {dto.CodigoProduto} não localizado.");
+
+            var carrinhoItem = new CarrinhoItem
+            {
+                CodigoCarrinho = dto.CodigoCarrinho,
+                CodigoProduto = dto.CodigoProduto,
+                Quant = dto.Quant,
+                PrecoUn = produto.Preco,
+                Carrinho = carrinho,
+                Produto = produto
+            };
+
+            carrinho.Itens.Add(carrinhoItem);
+
+            _repCarrinho.Persistir();
+
+            return CarrinhoView.Novo(carrinhoItem.Carrinho);
+        }
+
+        public CarrinhoView AlterarQuantidadeItem(AlterarQuantItemCarrinhoDto dto)
+        {
+            var carrinhoItem = _repCarrinhoItem.FirstOrDefault(p => p.Id == dto.CodigoCarrinhoItem);
+            if (carrinhoItem == null)
+                throw new Exception($"Carrinho item de código {dto.CodigoCarrinhoItem} não localizado.");
+
+            carrinhoItem.Quant = dto.Quant;
+
+            _repCarrinhoItem.Persistir();
+
+            return CarrinhoView.Novo(carrinhoItem.Carrinho);
         }
     }
 }

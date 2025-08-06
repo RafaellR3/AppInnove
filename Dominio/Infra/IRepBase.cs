@@ -22,5 +22,9 @@ namespace Dominio.Infra
         IOrderedQueryable<TEntidade> OrderByDescending<TCampos>(Expression<Func<TEntidade, TCampos>> campos);
         bool Any();
         bool Any(Expression<Func<TEntidade, bool>> exp);
+        void Inserir(TEntidade obj);
+        void Inserir(List<TEntidade> objs);
+        void Persistir();
+        void RejectChanges();
     }
 }

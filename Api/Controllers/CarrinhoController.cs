@@ -1,4 +1,5 @@
 using Aplicacao.Carrinhos;
+using Aplicacao.Carrinhos.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -35,6 +36,36 @@ namespace Api.Controllers
             {
                 var ret = _aplic.RecuperarPorUsuario(id);
 
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Route("AdicionarItem")]
+        [HttpPost]
+        public IActionResult AdicionarItem([FromBody] AdicionarItemCarrinhoDto dto)
+        {
+            try
+            {
+                var ret = _aplic.AdicionarItem(dto);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Route("AlterarQuantidadeItem")]
+        [HttpPut]
+        public IActionResult AlterarQuantidadeItem([FromBody] AlterarQuantItemCarrinhoDto dto)
+        {
+            try
+            {
+                var ret = _aplic.AlterarQuantidadeItem(dto);
                 return Ok(ret);
             }
             catch (Exception e)
