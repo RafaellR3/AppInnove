@@ -103,3 +103,6 @@ dkms.conf
 /Api/obj/Debug/net8.0/Api.csproj.BuildWithSkipAnalyzers
 /Dominio/obj/Debug/net8.0
 /.vs/ProjectEvaluation
+/Repositorio/obj/project.assets.json
+/Repositorio/obj/project.nuget.cache
+/Repositorio/obj/Repositorio.csproj.nuget.dgspec.json
