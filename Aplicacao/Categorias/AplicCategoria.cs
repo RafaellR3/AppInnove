@@ -1,10 +1,20 @@
-﻿namespace Aplicacao.Categorias
+﻿using Aplicacao.Categorias.View;
+using Dominio.Categorias;
+
+namespace Aplicacao.Categorias
 {
     public class AplicCategoria: IAplicCategoria
     {
-        public AplicCategoria()
+        private readonly IRepCategoria _repCategoria;
+        public AplicCategoria(IRepCategoria repCategoria)
         {
-            
+            _repCategoria = repCategoria;
+        }
+
+        public List<CategoriaView> Recuperar()
+        {
+            var query = _repCategoria.Recuperar();
+            return CategoriaView.Novo([.. query]);
         }
     }
 }

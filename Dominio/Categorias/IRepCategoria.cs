@@ -1,6 +1,8 @@
-﻿namespace Dominio.Categorias
+﻿using Dominio.Infra;
+
+namespace Dominio.Categorias
 {
-    public interface IRepCategoria
+    public interface IRepCategoria : IRepBase<Categoria>
     {
     }
 }
