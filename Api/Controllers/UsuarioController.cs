@@ -43,6 +43,21 @@ namespace Api.Controllers
             }
         }
 
+        [Route("Cadastrar")]
+        [HttpPost]
+        public IActionResult Cadastrar([FromBody] CadastrarUsuarioDto dto)
+        {
+            try
+            {
+                _aplic.Cadastrar(dto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [Route("Logar")]
         [HttpPost]
         public IActionResult Logar([FromBody] LoginDto dto)
@@ -58,19 +73,5 @@ namespace Api.Controllers
             }
         }
 
-        [Route("Cadastrar")]
-        [HttpPost]
-        public IActionResult Cadastrar([FromBody] CadastrarUsuarioDto dto)
-        {
-            try
-            {
-                _aplic.Cadastrar(dto);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
     }
 }
