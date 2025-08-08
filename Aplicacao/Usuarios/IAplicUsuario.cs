@@ -1,4 +1,5 @@
-﻿using Aplicacao.Usuarios.View;
+﻿using Aplicacao.Usuarios.Dto;
+using Aplicacao.Usuarios.View;
 
 namespace Aplicacao.Usuarios
 {
@@ -7,5 +8,6 @@ namespace Aplicacao.Usuarios
         List<UsuarioView> Recuperar();
         UsuarioView PesquisarPorId(Guid id);
         UsuarioView Logar(string email, string senha);
+        void Cadastrar(CadastrarUsuarioDto dto);
     }
 }

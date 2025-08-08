@@ -1,4 +1,5 @@
-﻿using Aplicacao.Usuarios.View;
+﻿using Aplicacao.Usuarios.Dto;
+using Aplicacao.Usuarios.View;
 using Dominio.Usuarios;
 
 namespace Aplicacao.Usuarios
@@ -23,6 +24,7 @@ namespace Aplicacao.Usuarios
             var usuario = _repUsuario.FirstOrDefault(p => p.Id == id);
             return UsuarioView.Novo(usuario);
         }
+
         public UsuarioView Logar(string email, string senha)
         {
             var usuario = _repUsuario.FirstOrDefault(p => p.Email == email && p.SenhaHash == senha);
@@ -30,6 +32,20 @@ namespace Aplicacao.Usuarios
                 throw new Exception("Usuario ou senha inválidos.");
 
             return UsuarioView.Novo(usuario);
+        }
+
+        public void Cadastrar(CadastrarUsuarioDto dto)
+        {
+            var usuario = new Usuario
+            {
+                Nome = dto.Nome,
+                Email = dto.Email,
+                SenhaHash = dto.Senha,
+                Telefone = dto.Telefone
+            };
+
+            _repUsuario.Inserir(usuario);
+            _repUsuario.Persistir();
         }
     }   
 }

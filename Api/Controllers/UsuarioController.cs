@@ -57,5 +57,20 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Route("Cadastrar")]
+        [HttpPost]
+        public IActionResult Cadastrar([FromBody] CadastrarUsuarioDto dto)
+        {
+            try
+            {
+                _aplic.Cadastrar(dto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

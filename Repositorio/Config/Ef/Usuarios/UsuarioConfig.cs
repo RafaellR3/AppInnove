@@ -38,6 +38,11 @@ namespace Repositorio.Config.Ef.Usuarios
                 .HasColumnName("senha_hash")
                 .HasColumnType("text");
 
+            builder.Property(u => u.Telefone)
+                .IsRequired()
+                .HasColumnName("telefone")
+                .HasColumnType("text");
+
             builder.Property(u => u.Ativo)
                 .HasColumnName("ativo")
                 .HasDefaultValue(true);
