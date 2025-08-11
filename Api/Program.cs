@@ -2,6 +2,7 @@ using Api.Extencao;
 using Aplicacao.Usuarios;
 using Dominio.Infra;
 using Dominio.Usuarios;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Repositorio;
 using Repositorio.Infra;
@@ -14,6 +15,18 @@ namespace Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            if (!builder.Environment.IsDevelopment() || !IsRunningInDocker())
+            {
+                builder.WebHost.ConfigureKestrel(serverOptions =>
+                {
+                    serverOptions.ConfigureHttpsDefaults(httpsOptions =>
+                    {
+                        // Você pode configurar opções de HTTPS aqui, ou deixar padrão
+                    });
+                });
+            }
+
             builder.Services.AddApplicationDbContext(builder);
             builder.Services.AddHttpContextAccessor();
 
@@ -31,6 +44,7 @@ namespace Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddControllers();
 
+
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy(
@@ -46,19 +60,23 @@ namespace Api
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
-            app.UseHttpsRedirection();
+            if (!IsRunningInDocker())
+            {
+                app.UseHttpsRedirection();
+            }
 
             app.UseAuthorization();
 
             app.MapControllers();
 
             app.Run();
+        }
+        private static bool IsRunningInDocker()
+        {
+            return System.Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
         }
     }
 }

@@ -106,3 +106,5 @@ dkms.conf
 /Repositorio/obj/project.assets.json
 /Repositorio/obj/project.nuget.cache
 /Repositorio/obj/Repositorio.csproj.nuget.dgspec.json
+/bin/Debug
+/obj/Debug
