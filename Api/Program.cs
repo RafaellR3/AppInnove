@@ -18,9 +18,9 @@ namespace Api
 
             if (IsRunningInDocker())
             {
-                builder.WebHost.ConfigureKestrel(serverOptions =>
+                builder.WebHost.ConfigureKestrel(options =>
                 {
-                    serverOptions.ListenAnyIP(8080);
+                    options.ListenAnyIP(8080); // Render vai escutar nessa porta
                 });
             }
 
@@ -73,7 +73,7 @@ namespace Api
         }
         private static bool IsRunningInDocker()
         {
-            return System.Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+            return Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
         }
     }
 }
