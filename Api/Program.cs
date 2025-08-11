@@ -16,14 +16,11 @@ namespace Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            if (!builder.Environment.IsDevelopment() || !IsRunningInDocker())
+            if (IsRunningInDocker())
             {
                 builder.WebHost.ConfigureKestrel(serverOptions =>
                 {
-                    serverOptions.ConfigureHttpsDefaults(httpsOptions =>
-                    {
-                        // Você pode configurar opções de HTTPS aqui, ou deixar padrão
-                    });
+                    serverOptions.ListenAnyIP(8080);
                 });
             }
 
