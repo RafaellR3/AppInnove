@@ -23,7 +23,7 @@ namespace Api
                     serverOptions.ListenAnyIP(8080);
                 });
             }
-            builder.WebHost.UseUrls("http://0.0.0.0:8080");
+            builder.WebHost.UseUrls("http://0.0.0.0:5000");
             builder.Services.AddApplicationDbContext(builder);
             builder.Services.AddHttpContextAccessor();
 
