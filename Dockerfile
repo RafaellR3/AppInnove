@@ -15,7 +15,7 @@ COPY ["Dominio/Dominio.csproj", "Dominio/"]
 COPY ["Repositorio/Repositorio.csproj", "Repositorio/"]
 RUN dotnet restore "./Api/Api.csproj"
 COPY . .
-WORKDIR "/src/Api"
+WORKDIR "Api"
 RUN dotnet build "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
