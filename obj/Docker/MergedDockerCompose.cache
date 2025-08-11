@@ -32,8 +32,8 @@ services:
         bind:
           create_host_path: true
       - type: bind
-        source: C:\Users\rafael.ribeiro\AppData\Roaming/ASP.NET/Https
-        target: /home/app/.aspnet/https
+        source: C:\Users\rafael.ribeiro\AppData\Roaming/ASP.NET/Http
+        target: /home/app/.aspnet/http
         read_only: true
         bind:
           create_host_path: true

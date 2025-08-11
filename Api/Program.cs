@@ -16,14 +16,14 @@ namespace Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            if (IsRunningInDocker())
-            {
-                builder.WebHost.ConfigureKestrel(options =>
+            if (IsRunningInDocker()) 
+            { 
+                builder.WebHost.ConfigureKestrel(serverOptions =>
                 {
-                    options.ListenAnyIP(8080); // Render vai escutar nessa porta
+                    serverOptions.ListenAnyIP(8080);
                 });
             }
-
+            builder.WebHost.UseUrls("http://0.0.0.0:8080");
             builder.Services.AddApplicationDbContext(builder);
             builder.Services.AddHttpContextAccessor();
 
