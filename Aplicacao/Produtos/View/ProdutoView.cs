@@ -15,6 +15,13 @@ namespace Aplicacao.Produtos.View
         public string Imagem { get; set; }
         public bool Ativo { get; set; }
 
+        public static List<ProdutoView> Novo(List<Produto> produtos)
+        {
+            var list = new List<ProdutoView>();
+            produtos.ForEach(p => list.Add(Novo(p)));
+            return list;
+        }
+
         public static ProdutoView Novo(Produto produto)
         {
             return new ProdutoView

@@ -51,6 +51,13 @@ namespace Repositorio.Config.Ef.Produtos
             builder.Property(u => u.Ativo)
                 .HasColumnName("ativo")
                 .HasDefaultValue(true);
+
+            builder.Property(u => u.CodigoCategoria)
+                .HasColumnName("idcategroia");
+
+            builder.HasOne(u => u.Categoria)
+                .WithMany()
+                .HasForeignKey(u => u.CodigoCategoria);
         }
     }
 }

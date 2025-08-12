@@ -1,4 +1,5 @@
-﻿using Dominio.Infra;
+﻿using Dominio.Categorias;
+using Dominio.Infra;
 
 namespace Dominio.Produtos
 {
@@ -13,5 +14,8 @@ namespace Dominio.Produtos
         public DateTime DataAtualizacao { get; set; } = DateTime.UtcNow;
         public string Imagem { get; set; }
         public bool Ativo { get; set; } = true;
+        public Guid? CodigoCategoria { get; set; }
+
+        public virtual Categoria Categoria { get; set; }
     }
 }

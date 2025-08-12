@@ -58,5 +58,20 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Route("{id}/PesquisarPorCategoria")]
+        [HttpGet]
+        public IActionResult PesquisarPorCategoria([FromRoute] Guid id)
+        {
+            try
+            {
+                var ret = _aplic.PesquisarPorCategoria(id);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

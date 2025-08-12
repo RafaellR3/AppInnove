@@ -55,5 +55,10 @@ namespace Aplicacao.Produtos
             var produto = _repProduto.FirstOrDefault(p => p.Id == id);
             return ProdutoView.Novo(produto);
         }
+        public List<ProdutoView> PesquisarPorCategoria(Guid id)
+        {
+            var produtos = _repProduto.Where(p => p.CodigoCategoria == id).ToList();
+            return ProdutoView.Novo(produtos);
+        }
     }
 }

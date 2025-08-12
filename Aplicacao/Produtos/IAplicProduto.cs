@@ -7,6 +7,7 @@ namespace Aplicacao.Produtos
     {
         List<ProdutoView> Recuperar(); 
         List<ProdutoView> Pesquisar(string pesquisa);
-        ProdutoView PesquisarPorId(Guid id);
+        ProdutoView PesquisarPorId(Guid id); 
+        List<ProdutoView> PesquisarPorCategoria(Guid id);
     }
 }
