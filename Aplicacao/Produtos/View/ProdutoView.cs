@@ -12,7 +12,8 @@ namespace Aplicacao.Produtos.View
         public int Estoque { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public string Imagem { get; set; }
+        public string UrlImagem { get; set; }
+        public byte[] Imagem { get; set; }
         public bool Ativo { get; set; }
 
         public static List<ProdutoView> Novo(List<Produto> produtos)
@@ -35,6 +36,7 @@ namespace Aplicacao.Produtos.View
                 CreatedAt = produto.DataCriacao,
                 UpdatedAt = produto.DataAtualizacao,
                 Imagem = produto.Imagem,
+                UrlImagem = produto.UrlImagem,
                 Ativo = produto.Ativo
             };
         }

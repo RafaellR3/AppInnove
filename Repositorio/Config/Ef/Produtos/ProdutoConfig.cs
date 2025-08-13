@@ -44,6 +44,10 @@ namespace Repositorio.Config.Ef.Produtos
                 .HasColumnName("updated_at")
                 .HasColumnType("timestamp");
 
+            builder.Property(p => p.UrlImagem)
+                .HasColumnName("imagem")
+                .HasColumnType("bytea");
+
             builder.Property(p => p.Imagem)
                 .HasColumnName("imagem")
                 .HasColumnType("varchar");
