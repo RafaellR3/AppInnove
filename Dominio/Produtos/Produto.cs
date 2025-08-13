@@ -13,7 +13,7 @@ namespace Dominio.Produtos
         public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
         public DateTime DataAtualizacao { get; set; } = DateTime.UtcNow;
         public string UrlImagem { get; set; }
-        public byte[] Imagem { get; set; }
+        public byte[]? Imagem { get; set; }
         public bool Ativo { get; set; } = true;
         public Guid? CodigoCategoria { get; set; }
 

@@ -45,12 +45,12 @@ namespace Repositorio.Config.Ef.Produtos
                 .HasColumnType("timestamp");
 
             builder.Property(p => p.UrlImagem)
-                .HasColumnName("imagem")
-                .HasColumnType("bytea");
+                .HasColumnName("urlimagem")
+                .HasColumnType("varchar");
 
             builder.Property(p => p.Imagem)
                 .HasColumnName("imagem")
-                .HasColumnType("varchar");
+                .HasColumnType("bytea");
 
             builder.Property(u => u.Ativo)
                 .HasColumnName("ativo")
