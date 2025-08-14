@@ -14,19 +14,7 @@ namespace Aplicacao.Produtos
         public List<ProdutoView> Recuperar()
         {
             var query = _repProduto.Recuperar();
-            return [.. query.Select(p => new ProdutoView
-            {
-                Id = p.Id,
-                CodigoERP = p.CodigoERP,
-                Nome = p.Nome,
-                Descricao = p.Descricao,
-                Preco = p.Preco,
-                Estoque = p.Estoque,
-                CreatedAt = p.DataCriacao,
-                UpdatedAt = p.DataAtualizacao,
-                Imagem = p.Imagem,
-                Ativo = p.Ativo
-            })];
+            return ProdutoView.Novo(query.ToList());
         }
 
         public List<ProdutoView> Pesquisar(string pesquisa)
