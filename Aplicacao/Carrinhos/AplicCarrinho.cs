@@ -91,7 +91,7 @@ namespace Aplicacao.Carrinhos
             if (carrinho == null)
                 return lista;
 
-            carrinho.Itens.Select(p => new CarrinhoCompraItemView
+            return carrinho.Itens.Select(p => new CarrinhoCompraItemView
             {
                 CodigoCarrinhoItem = p.Id,
                 CodigoProduto = p.CodigoProduto,
@@ -101,8 +101,6 @@ namespace Aplicacao.Carrinhos
                 UrlImagem = p.Produto.UrlImagem,
                 ValorTotal = p.ValorTotal
             }).ToList();
-
-            return lista;
         }
 
         public CarrinhoView AdicionarItem(AdicionarItemCarrinhoDto dto)
