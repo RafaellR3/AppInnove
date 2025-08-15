@@ -36,7 +36,7 @@ namespace Aplicacao.Carrinhos
                 DataCriacao = p.DataCriacao,
                 DataAtualizacao = p.DataAtualizacao,
                 Usuario = UsuarioView.Novo(p.Usuario),
-                Itens = CarrinhoItemView.Novo(p.Itens)    
+                Itens = CarrinhoItemView.Novo(p.Itens)
             })];
         }
 
@@ -53,7 +53,7 @@ namespace Aplicacao.Carrinhos
                 DataAtualizacao = DateTime.Now,
                 DataCriacao = DateTime.Now,
                 Itens = [],
-                Usuario = _repUsuario.FirstOrDefault(P => P.Id == codigoUsuario)                
+                Usuario = _repUsuario.FirstOrDefault(P => P.Id == codigoUsuario)
             };
 
             _repCarrinho.InserirPersistido(carrinho);
@@ -80,6 +80,31 @@ namespace Aplicacao.Carrinhos
             return CarrinhoView.Novo(carrinho);
         }
 
+        public List<CarrinhoCompraItemView> RecuperarCarrinhoItensPorUsuario(Guid codigoUsuario)
+        {
+            var usuario = _repUsuario.FirstOrDefault(p => p.Id == codigoUsuario);
+            if (usuario == null)
+                throw new Exception($"Usuário de código {codigoUsuario} não localizado.");
+
+            var lista = new List<CarrinhoCompraItemView>();
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.CodigoUsuario == codigoUsuario);
+            if (carrinho == null)
+                return lista;
+
+            carrinho.Itens.Select(p => new CarrinhoCompraItemView
+            {
+                CodigoCarrinhoItem = p.Id,
+                CodigoProduto = p.CodigoProduto,
+                Preco = p.PrecoUn,
+                ProdutoNome = p.Produto.Nome,
+                Quantidade = p.Quant,
+                UrlImagem = p.Produto.UrlImagem,
+                ValorTotal = p.ValorTotal
+            }).ToList();
+
+            return lista;
+        }
+
         public CarrinhoView AdicionarItem(AdicionarItemCarrinhoDto dto)
         {
             var usuario = _repUsuario.FirstOrDefault(p => p.Id == dto.CodigoUsuario);
@@ -100,7 +125,7 @@ namespace Aplicacao.Carrinhos
                 Carrinho = carrinho,
                 Produto = produto,
                 ValorTotal = dto.ValorTotal,
-                
+
             };
 
             carrinho.Itens.Add(carrinhoItem);

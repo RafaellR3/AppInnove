@@ -10,5 +10,6 @@ namespace Aplicacao.Carrinhos
         CarrinhoView RecuperarPorUsuario(Guid codigoUsuario);
         CarrinhoView AdicionarItem(AdicionarItemCarrinhoDto dto);
         CarrinhoView AlterarQuantidadeItem(AlterarQuantItemCarrinhoDto dto);
+        List<CarrinhoCompraItemView> RecuperarCarrinhoItensPorUsuario(Guid codigoUsuario);
     }
 }

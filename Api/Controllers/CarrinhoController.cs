@@ -27,14 +27,30 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+       
         [Route("{id}/RecuperarPorUsuario")]
-
         [HttpGet]
         public IActionResult RecuperarProUsuario([FromRoute] Guid id)
         {
             try
             {
                 var ret = _aplic.RecuperarPorUsuario(id);
+
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Route("{id}/RecuperarCarrinhoItensPorUsuario")]
+        [HttpGet]
+        public IActionResult RecuperarCarrinhoItensPorUsuario([FromRoute] Guid id)
+        {
+            try
+            {
+                var ret = _aplic.RecuperarCarrinhoItensPorUsuario(id);
 
                 return Ok(ret);
             }
