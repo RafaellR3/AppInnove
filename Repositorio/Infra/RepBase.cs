@@ -114,9 +114,10 @@ namespace Repositorio.Infra
             return DbSet.Any(exp);
         }
 
-        public void Inserir(TEntidade obj)
+        public void InserirPersistido(TEntidade obj)
         {
             Inserir(new List<TEntidade> { obj });
+            Persistir();
         }
 
         public void Inserir(List<TEntidade> objs)

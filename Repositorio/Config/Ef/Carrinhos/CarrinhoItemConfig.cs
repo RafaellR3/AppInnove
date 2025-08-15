@@ -36,6 +36,11 @@ namespace Repositorio.Config.Ef.Carrinhos
                 .HasColumnType("numeric(12, 2)")
                 .IsRequired();
 
+            builder.Property(i => i.ValorTotal)
+                .HasColumnName("valortotal")
+                .HasColumnType("numeric(12, 2)")
+                .IsRequired();
+
             builder.Property(i => i.DataCriacao)
                 .HasColumnName("created_at")
                 .HasColumnType("timestamp")

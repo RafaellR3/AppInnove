@@ -40,6 +40,26 @@ namespace Aplicacao.Carrinhos
             })];
         }
 
+        private Carrinho Novo(Guid codigoUsuario)
+        {
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.CodigoUsuario == codigoUsuario);
+            if (carrinho != null)
+                return carrinho;
+
+            carrinho = new Carrinho()
+            {
+                Id = Guid.NewGuid(),
+                CodigoUsuario = codigoUsuario,
+                DataAtualizacao = DateTime.Now,
+                DataCriacao = DateTime.Now,
+                Itens = [],
+                Usuario = _repUsuario.FirstOrDefault(P => P.Id == codigoUsuario)                
+            };
+
+            _repCarrinho.InserirPersistido(carrinho);
+            return carrinho;
+        }
+
         public CarrinhoView RecuperarPorUsuario(Guid codigoUsuario)
         {
             var usuario = _repUsuario.FirstOrDefault(p => p.Id == codigoUsuario);
@@ -54,7 +74,7 @@ namespace Aplicacao.Carrinhos
                     CodigoUsuario = usuario.Id,
                     Usuario = usuario
                 };
-                _repCarrinho.Inserir(carrinho);
+                _repCarrinho.InserirPersistido(carrinho);
                 _repCarrinho.Persistir();
             }
             return CarrinhoView.Novo(carrinho);
@@ -62,9 +82,10 @@ namespace Aplicacao.Carrinhos
 
         public CarrinhoView AdicionarItem(AdicionarItemCarrinhoDto dto)
         {
-            var carrinho = _repCarrinho.FirstOrDefault(p => p.Id == dto.CodigoCarrinho);
+            var usuario = _repUsuario.FirstOrDefault(p => p.Id == dto.CodigoUsuario);
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.CodigoUsuario == dto.CodigoUsuario);
             if (carrinho == null)
-                throw new Exception($"Carrinho de código {dto.CodigoCarrinho} não localizado.");
+                carrinho = Novo(usuario.Id);
 
             var produto = _repProduto.FirstOrDefault(p => p.Id == dto.CodigoProduto);
             if (produto == null)
@@ -72,12 +93,14 @@ namespace Aplicacao.Carrinhos
 
             var carrinhoItem = new CarrinhoItem
             {
-                CodigoCarrinho = dto.CodigoCarrinho,
+                CodigoCarrinho = carrinho.Id,
                 CodigoProduto = dto.CodigoProduto,
                 Quant = dto.Quant,
                 PrecoUn = produto.Preco,
                 Carrinho = carrinho,
-                Produto = produto
+                Produto = produto,
+                ValorTotal = dto.ValorTotal,
+                
             };
 
             carrinho.Itens.Add(carrinhoItem);

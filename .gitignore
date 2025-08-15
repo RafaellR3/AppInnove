@@ -108,3 +108,8 @@ dkms.conf
 /Repositorio/obj/Repositorio.csproj.nuget.dgspec.json
 /bin/Debug
 /obj/Debug
+/Api/bin/Debug/net8.0/appsettings.Development.json
+/Api/obj/Debug/net8.0/staticwebassets/msbuild.Api.Microsoft.AspNetCore.StaticWebAssets.props
+/Api/obj/Debug/net8.0/staticwebassets.build.json
+/Api/obj/Debug/net8.0/staticwebassets.development.json
+/Api/obj/Debug/net8.0/staticwebassets.pack.json

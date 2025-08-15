@@ -10,7 +10,8 @@ namespace Aplicacao.Carrinhos.View
         public Guid CodigoProduto { get; set; }
         public int Quant { get; set; } 
         public decimal PrecoUn { get; set; } 
-        public DateTime DataCriacao { get; set; }
+        public DateTime DataCriacao { get; set; }        
+        public decimal ValorTotal { get; set; }
 
         public ProdutoView Produto { get; set; }
 

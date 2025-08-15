@@ -2,8 +2,10 @@
 {
     public class AdicionarItemCarrinhoDto
     {
-        public Guid CodigoCarrinho { get; set; }
         public Guid CodigoProduto { get; set; }
+        public Guid CodigoUsuario { get; set; }
         public int Quant { get; set; }
+        public decimal PrecoUn { get; set; }
+        public decimal ValorTotal { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace Aplicacao.Usuarios
                 Telefone = dto.Telefone
             };
 
-            _repUsuario.Inserir(usuario);
+            _repUsuario.InserirPersistido(usuario);
             _repUsuario.Persistir();
         }
     }   
