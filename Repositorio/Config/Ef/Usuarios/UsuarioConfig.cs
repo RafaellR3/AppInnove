@@ -39,7 +39,6 @@ namespace Repositorio.Config.Ef.Usuarios
                 .HasColumnType("text");
 
             builder.Property(u => u.Telefone)
-                .IsRequired()
                 .HasColumnName("telefone")
                 .HasColumnType("text");
 
