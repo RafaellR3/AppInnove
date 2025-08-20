@@ -6,6 +6,7 @@ using Dominio.Carrinhos.Itens;
 using Dominio.Produtos;
 using Dominio.Usuarios;
 using System.Data;
+using System.Xml;
 
 namespace Aplicacao.Carrinhos
 {
@@ -114,23 +115,33 @@ namespace Aplicacao.Carrinhos
             if (produto == null)
                 throw new Exception($"Produto de código {dto.CodigoProduto} não localizado.");
 
-            var carrinhoItem = new CarrinhoItem
+            var itemExistente = carrinho.Itens.FirstOrDefault(p => p.CodigoProduto == dto.CodigoProduto);
+            if (itemExistente != null)
             {
-                CodigoCarrinho = carrinho.Id,
-                CodigoProduto = dto.CodigoProduto,
-                Quant = dto.Quant,
-                PrecoUn = produto.Preco,
-                Carrinho = carrinho,
-                Produto = produto,
-                ValorTotal = dto.ValorTotal,
+                itemExistente.Quant += dto.Quant;
+                itemExistente.ValorTotal = itemExistente.PrecoUn * itemExistente.Quant;
+            }
+            else
+            {
 
-            };
+                var carrinhoItem = new CarrinhoItem
+                {
+                    CodigoCarrinho = carrinho.Id,
+                    CodigoProduto = dto.CodigoProduto,
+                    Quant = dto.Quant,
+                    PrecoUn = produto.Preco,
+                    Carrinho = carrinho,
+                    Produto = produto,
+                    ValorTotal = dto.ValorTotal,
 
-            carrinho.Itens.Add(carrinhoItem);
+                };
+
+                carrinho.Itens.Add(carrinhoItem);
+            }
 
             _repCarrinho.Persistir();
 
-            return CarrinhoView.Novo(carrinhoItem.Carrinho);
+            return CarrinhoView.Novo(carrinho);
         }
 
         public CarrinhoView AlterarQuantidadeItem(AlterarQuantItemCarrinhoDto dto)
