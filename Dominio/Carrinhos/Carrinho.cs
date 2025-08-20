@@ -13,5 +13,10 @@ namespace Dominio.Carrinhos
 
         public virtual Usuario Usuario { get; set; }
         public virtual List<CarrinhoItem> Itens { get; set; } = [];
+
+        public void Totalizar()
+        {
+            ValorTotal = Itens.Sum(p => p.ValorTotal);
+        }
     }
 }

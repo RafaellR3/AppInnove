@@ -89,5 +89,20 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Route("RemoverItem")]
+        [HttpDelete]
+        public IActionResult RemoverItem([FromBody] RemoverItemCarrinhoDto dto)
+        {
+            try
+            {
+                var ret = _aplic.RemoverItem(dto);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

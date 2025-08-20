@@ -128,6 +128,11 @@ namespace Repositorio.Infra
             }
         }
 
+        public void Remover(TEntidade obj)
+        {
+            DbSet.Remove(obj);
+        }
+
         public void Persistir()
         {
             try

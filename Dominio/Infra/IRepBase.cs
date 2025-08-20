@@ -24,6 +24,7 @@ namespace Dominio.Infra
         bool Any(Expression<Func<TEntidade, bool>> exp);
         void InserirPersistido(TEntidade obj);
         void Inserir(List<TEntidade> objs);
+        void Remover(TEntidade obj);
         void Persistir();
         void RejectChanges();
     }

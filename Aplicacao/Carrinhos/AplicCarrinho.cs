@@ -6,7 +6,6 @@ using Dominio.Carrinhos.Itens;
 using Dominio.Produtos;
 using Dominio.Usuarios;
 using System.Data;
-using System.Xml;
 
 namespace Aplicacao.Carrinhos
 {
@@ -139,6 +138,9 @@ namespace Aplicacao.Carrinhos
                 carrinho.Itens.Add(carrinhoItem);
             }
 
+            _repCarrinhoItem.Persistir();
+
+            carrinho.Totalizar();
             _repCarrinho.Persistir();
 
             return CarrinhoView.Novo(carrinho);
@@ -154,7 +156,29 @@ namespace Aplicacao.Carrinhos
 
             _repCarrinhoItem.Persistir();
 
+            carrinhoItem.Carrinho.Totalizar();
+            _repCarrinho.Persistir();
+
             return CarrinhoView.Novo(carrinhoItem.Carrinho);
+        }
+
+        public CarrinhoView RemoverItem(RemoverItemCarrinhoDto dto)
+        {
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.Id == dto.CodigoCarrinho);
+            if (carrinho == null)
+                throw new Exception($"Carrinho não localizado.");
+
+            var item = carrinho.Itens.FirstOrDefault(p => p.CodigoProduto == dto.CodigoProduto);
+
+            _repCarrinhoItem.Remover(item);
+
+            _repCarrinhoItem.Persistir();
+
+            carrinho.Totalizar();
+
+            _repCarrinho.Persistir();
+
+            return CarrinhoView.Novo(carrinho);
         }
     }
 }
