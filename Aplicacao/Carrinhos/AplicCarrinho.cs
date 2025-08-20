@@ -162,15 +162,14 @@ namespace Aplicacao.Carrinhos
             return CarrinhoView.Novo(carrinhoItem.Carrinho);
         }
 
-        public CarrinhoView RemoverItem(RemoverItemCarrinhoDto dto)
+        public CarrinhoView RemoverItem(Guid codigo)
         {
-            var carrinho = _repCarrinho.FirstOrDefault(p => p.Id == dto.CodigoCarrinho);
-            if (carrinho == null)
-                throw new Exception($"Carrinho não localizado.");
+            var carrinhoItem = _repCarrinhoItem.FirstOrDefault(p => p.Id == codigo);
+            if (carrinhoItem == null)
+                throw new Exception($"Registro não localizado.");
+            var carrinho = carrinhoItem.Carrinho;
 
-            var item = carrinho.Itens.FirstOrDefault(p => p.CodigoProduto == dto.CodigoProduto);
-
-            _repCarrinhoItem.Remover(item);
+            _repCarrinhoItem.Remover(carrinhoItem);
 
             _repCarrinhoItem.Persistir();
 

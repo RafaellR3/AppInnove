@@ -90,13 +90,13 @@ namespace Api.Controllers
             }
         }
 
-        [Route("RemoverItem")]
+        [Route("RemoverItem/{codigo}")]
         [HttpDelete]
-        public IActionResult RemoverItem([FromBody] RemoverItemCarrinhoDto dto)
+        public IActionResult RemoverItem([FromRoute] Guid codigo)
         {
             try
             {
-                var ret = _aplic.RemoverItem(dto);
+                var ret = _aplic.RemoverItem(codigo);
                 return Ok(ret);
             }
             catch (Exception e)
