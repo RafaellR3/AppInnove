@@ -1,0 +1,63 @@
+﻿using Aplicacao.Pedidos;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Api.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class PedidoController : ControllerBase
+    {
+        private readonly IAplicPedido _aplic;
+        public PedidoController(IAplicPedido aplic)
+        {
+            _aplic = aplic;
+        }
+
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            try
+            {
+                var ret = _aplic.Recuperar();
+
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [Route("{id}/PesquisarPorId")]
+        [HttpGet]
+        public IActionResult PesquisarPorId([FromRoute] Guid id)
+        {
+            try
+            {
+                var ret = _aplic.PesquisarPorId(id);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult Inserir([FromBody] PedidoDto dto)
+        {
+            try
+            {
+                _aplic.Novo(dto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+    }
+}
+
