@@ -113,3 +113,14 @@ dkms.conf
 /Api/obj/Debug/net8.0/staticwebassets.build.json
 /Api/obj/Debug/net8.0/staticwebassets.development.json
 /Api/obj/Debug/net8.0/staticwebassets.pack.json
+/.vs/Api/CopilotIndices/17.14.995.13737/CodeChunks.db
+/.vs/Api/CopilotIndices/17.14.995.13737
+/Api/obj/Debug/net8.0/rpswa.dswa.cache.json
+*.txt
+/Api/obj/Debug/net8.0/Api.GeneratedMSBuildEditorConfig.editorconfig
+/Aplicacao/obj/Debug/net8.0/Aplicacao.assets.cache
+/Aplicacao/obj/Debug/net8.0/Aplicacao.GeneratedMSBuildEditorConfig.editorconfig
+/Dominio/obj/Debug/net8.0/Dominio.assets.cache
+/Dominio/obj/Debug/net8.0/Dominio.GeneratedMSBuildEditorConfig.editorconfig
+/Repositorio/obj/Debug/net8.0/Repositorio.assets.cache
+/Repositorio/obj/Debug/net8.0/Repositorio.GeneratedMSBuildEditorConfig.editorconfig
