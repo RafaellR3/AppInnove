@@ -23,7 +23,7 @@ namespace Aplicacao.Pedidos
             var view = pedidos.Select(p => new ListaPedidoView
             {
                 Numero = p.CodigoErp,
-                Data = p.DataCriacao,
+                Data = p.DataCriacao.Date,
                 Quant = p.Itens.Count(),
                 Total = p.Total,
                 Status = p.Status,
