@@ -9,8 +9,8 @@ namespace Aplicacao.Pedidos
         List<PedidoView> Recuperar();
         PedidoView PesquisarPorId(Guid id);
         void Novo(PedidoDto dto);
-        List<PedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario);
-        List<PedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario);
+        List<ListaPedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario);
+        List<ListaPedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario);
     }
 }
 

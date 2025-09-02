@@ -122,3 +122,4 @@ dkms.conf
 /Dominio/obj/project.nuget.cache
 /Repositorio/obj/Debug/net8.0/Repositorio.assets.cache
 /Repositorio/obj/Repositorio.csproj.nuget.g.props
+/Api/obj/Debug/net8.0
