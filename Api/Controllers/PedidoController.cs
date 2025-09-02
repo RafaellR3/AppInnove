@@ -44,7 +44,7 @@ namespace Api.Controllers
             }
         }
 
-        [Route("{id}/PedidosEmAbertoPorUsuario")]
+        [Route("{codigoUsuario}/PedidosEmAbertoPorUsuario")]
         [HttpGet]
         public IActionResult PedidosEmAbertoPorUsuario([FromRoute] Guid codigoUsuario)
         {
@@ -59,7 +59,7 @@ namespace Api.Controllers
             }
         }
 
-        [Route("{id}/PedidosFinalizadosPorUsuario")]
+        [Route("{codigoUsuario}/PedidosFinalizadosPorUsuario")]
         [HttpGet]
         public IActionResult PedidosFinalizadosPorUsuario([FromRoute] Guid codigoUsuario)
         {
