@@ -1,5 +1,6 @@
 ﻿using Aplicacao.Infra;
 using Aplicacao.Pedidos.View;
+using Dominio.Pedidos;
 
 namespace Aplicacao.Pedidos
 {
@@ -8,6 +9,8 @@ namespace Aplicacao.Pedidos
         List<PedidoView> Recuperar();
         PedidoView PesquisarPorId(Guid id);
         void Novo(PedidoDto dto);
+        List<PedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario);
+        List<PedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario);
     }
 }
 

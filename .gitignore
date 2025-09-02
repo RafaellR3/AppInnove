@@ -113,3 +113,12 @@ dkms.conf
 /Api/obj/Debug/net8.0/staticwebassets.build.json
 /Api/obj/Debug/net8.0/staticwebassets.development.json
 /Api/obj/Debug/net8.0/staticwebassets.pack.json
+/Api/obj/Api.csproj.nuget.g.props
+/Aplicacao/obj/Debug/net8.0/Aplicacao.assets.cache
+/Aplicacao/obj/Aplicacao.csproj.nuget.g.props
+/Dominio/obj/Dominio.csproj.nuget.dgspec.json
+/Dominio/obj/Dominio.csproj.nuget.g.props
+/Dominio/obj/project.assets.json
+/Dominio/obj/project.nuget.cache
+/Repositorio/obj/Debug/net8.0/Repositorio.assets.cache
+/Repositorio/obj/Repositorio.csproj.nuget.g.props

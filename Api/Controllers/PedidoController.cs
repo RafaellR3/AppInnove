@@ -44,6 +44,36 @@ namespace Api.Controllers
             }
         }
 
+        [Route("{id}/PedidosEmAbertoPorUsuario")]
+        [HttpGet]
+        public IActionResult PedidosEmAbertoPorUsuario([FromRoute] Guid codigoUsuario)
+        {
+            try
+            {
+                var ret = _aplic.PedidosEmAbertoPorUsuario(codigoUsuario);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Route("{id}/PedidosFinalizadosPorUsuario")]
+        [HttpGet]
+        public IActionResult PedidosFinalizadosPorUsuario([FromRoute] Guid codigoUsuario)
+        {
+            try
+            {
+                var ret = _aplic.PedidosFinalizadosPorUsuario(codigoUsuario);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
         [HttpPost]
         public IActionResult Inserir([FromBody] PedidoDto dto)

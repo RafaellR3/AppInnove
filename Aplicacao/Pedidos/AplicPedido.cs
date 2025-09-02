@@ -17,6 +17,20 @@ namespace Aplicacao.Pedidos
             return PedidoView.Novo(query.ToList());
         }
 
+        public List<PedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario)
+        {
+            
+            var pedidos = _repPedido.Where(p => p.CodigoUsuario == codigoUsuario && Pedido.StatusEmAberto.Contains(p.Status)).ToList();
+            return PedidoView.Novo(pedidos);
+        }
+
+        public List<PedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario)
+        {
+
+            var pedidos = _repPedido.Where(p => p.CodigoUsuario == codigoUsuario && !Pedido.StatusEmAberto.Contains(p.Status)).ToList();
+            return PedidoView.Novo(pedidos);
+        }
+
         public PedidoView PesquisarPorId(Guid id)
         {
             var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
