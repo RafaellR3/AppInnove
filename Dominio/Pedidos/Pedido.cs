@@ -12,10 +12,10 @@ namespace Dominio.Pedidos
         public string CodigoErp { get; set; }
         public Guid CodigoUsuario { get; set; }
         public decimal Total { get; set; }
-        public string Rua { get; set; }
-        public string Cidade { get; set; }
+        public string? Rua { get; set; }
+        public string? Cidade { get; set; }
         public string? Bairro { get; set; }
-        public string Complemento { get; set; }
+        public string? Complemento { get; set; }
         public string? NumeroEndereco { get; set; }
         public EnumStatusPedido Status { get; set; } = EnumStatusPedido.Criado;
         public DateTime DataCriacao { get; set; } = DateTime.Now;

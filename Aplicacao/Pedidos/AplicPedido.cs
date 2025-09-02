@@ -18,8 +18,7 @@ namespace Aplicacao.Pedidos
         }
 
         public List<ListaPedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario)
-        {
-            
+        {            
             var pedidos = _repPedido.Where(p => p.CodigoUsuario == codigoUsuario && Pedido.StatusEmAberto.Contains(p.Status)).ToList();
             var view = pedidos.Select(p => new ListaPedidoView
             {
