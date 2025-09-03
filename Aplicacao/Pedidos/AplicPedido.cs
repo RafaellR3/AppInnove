@@ -50,6 +50,23 @@ namespace Aplicacao.Pedidos
             return view;
         }
 
+        public List<ListaPedidoView> PedidosPorUsuario(Guid codigoUsuario)
+        {
+
+            var pedidos = _repPedido.Where(p => p.CodigoUsuario == codigoUsuario).ToList();
+            var view = pedidos.Select(p => new ListaPedidoView
+            {
+                Numero = p.CodigoErp,
+                Data = p.DataCriacao,
+                Quant = p.Itens.Count(),
+                Total = p.Total,
+                Status = p.Status,
+                Itens = PedidoItemView.Novo(p.Itens)
+            }).ToList();
+
+            return view;
+        }
+
         public PedidoView PesquisarPorId(Guid id)
         {
             var pedido = _repPedido.FirstOrDefault(p => p.Id == id);

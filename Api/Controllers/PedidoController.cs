@@ -74,6 +74,20 @@ namespace Api.Controllers
             }
         }
 
+        [Route("{codigoUsuario}/PedidosPorUsuario")]
+        [HttpGet]
+        public IActionResult PedidosPorUsuario([FromRoute] Guid codigoUsuario)
+        {
+            try
+            {
+                var ret = _aplic.PedidosPorUsuario(codigoUsuario);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         [HttpPost]
         public IActionResult Inserir([FromBody] PedidoDto dto)
