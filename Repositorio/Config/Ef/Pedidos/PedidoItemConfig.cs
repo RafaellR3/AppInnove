@@ -31,10 +31,12 @@ namespace Repositorio.Config.Ef.Pedidos
 
             builder.Property(p => p.PrecoUn)
                 .HasColumnName("preco_unitario")
+                .HasColumnType("numeric(12, 2)")
                 .IsRequired();
 
             builder.Property(p => p.DataCriacao)
                 .HasColumnName("criado_em")
+                .HasColumnType("timestamp")
                 .IsRequired();
 
             builder.HasOne(p => p.Pedido)

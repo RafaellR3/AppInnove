@@ -18,8 +18,7 @@ namespace Repositorio.Config.Ef.Pedidos
                 .ValueGeneratedNever();
 
             builder.Property(p => p.CodigoErp)
-               .HasColumnName("id_erp")
-               .HasColumnType("text");
+               .HasColumnName("id_erp");
 
             builder.Property(p => p.CodigoUsuario)
                 .HasColumnName("usuario_id")
@@ -31,6 +30,7 @@ namespace Repositorio.Config.Ef.Pedidos
 
             builder.Property(p => p.Total)
                 .HasColumnName("total")
+                .HasColumnType("numeric(12, 2)")
                 .IsRequired();
 
             builder.Property(p => p.Rua)
@@ -50,10 +50,12 @@ namespace Repositorio.Config.Ef.Pedidos
 
             builder.Property(p => p.DataCriacao)
                 .HasColumnName("criado_em")
+                .HasColumnType("timestamp")
                 .IsRequired();
 
             builder.Property(p => p.DataAtualizacao)
                 .HasColumnName("atualizado_em")
+                .HasColumnType("timestamp")
                 .IsRequired();
 
         }

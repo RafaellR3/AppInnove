@@ -64,7 +64,7 @@ namespace Aplicacao.Pedidos
                 Cidade = dto.Cidade,
                 CodigoUsuario = dto.CodigoUsuario,
                 Complemento = dto.Complemento,
-                NumeroEndereco = dto.NumeroEndereco,
+                NumeroEndereco = dto.Numero,
                 Rua = dto.Rua,
                 Total = dto.Total
             };
@@ -77,8 +77,9 @@ namespace Aplicacao.Pedidos
                 Quantidade = p.Quantidade,
                 Pedido = pedido
             }));
-
+            pedido.CodigoErp = DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString()+ DateTime.Now.Second.ToString();
             _repPedido.InserirPersistido(pedido);
         }
+
     }
 }
