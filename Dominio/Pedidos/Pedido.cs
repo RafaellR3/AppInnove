@@ -9,7 +9,7 @@ namespace Dominio.Pedidos
         {
             
         }
-        public string CodigoErp { get; set; }
+        public string? CodigoErp { get; set; }
         public Guid CodigoUsuario { get; set; }
         public decimal Total { get; set; }
         public string? Rua { get; set; }
