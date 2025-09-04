@@ -57,6 +57,7 @@ namespace Api
 
             var app = builder.Build();
 
+            app.UseCors("AllowAny");
             app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI();
