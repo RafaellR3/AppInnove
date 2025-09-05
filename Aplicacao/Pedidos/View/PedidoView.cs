@@ -1,4 +1,5 @@
-﻿using Dominio.Pedidos;
+﻿using Aplicacao.Usuarios.View;
+using Dominio.Pedidos;
 
 namespace Aplicacao.Pedidos.View
 {
@@ -18,6 +19,7 @@ namespace Aplicacao.Pedidos.View
         public DateTime DataAtualizacao { get; set; }
 
         public List<PedidoItemView> Itens { get; set; }
+        public UsuarioView Usuario { get; set; }
 
         public static List<PedidoView> Novo(List<Pedido> itens)
         {
@@ -43,6 +45,7 @@ namespace Aplicacao.Pedidos.View
                 Rua = pedido.Rua,
                 DataAtualizacao = pedido.DataAtualizacao,
                 DataCriacao = pedido.DataCriacao,
+                Usuario = UsuarioView.Novo(pedido.Usuario),
                 Itens = PedidoItemView.Novo(pedido.Itens)
             };
         }

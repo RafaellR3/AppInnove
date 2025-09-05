@@ -58,6 +58,10 @@ namespace Repositorio.Config.Ef.Pedidos
                 .HasColumnType("timestamp")
                 .IsRequired();
 
+            builder.HasOne(p => p.Usuario)
+                .WithMany()
+                .HasForeignKey(p => p.CodigoUsuario);
+
         }
     }
 }

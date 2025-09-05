@@ -1,14 +1,13 @@
 ﻿using Dominio.Infra;
+using Dominio.Usuarios;
 using System.ComponentModel;
 
 namespace Dominio.Pedidos
 {
     public class Pedido : IdentificadorGuid
     {
-        public Pedido()
-        {
-            
-        }
+        public Pedido() { }
+
         public string? CodigoErp { get; set; }
         public Guid CodigoUsuario { get; set; }
         public decimal Total { get; set; }
@@ -21,6 +20,7 @@ namespace Dominio.Pedidos
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public DateTime DataAtualizacao { get; set; } = DateTime.Now;
 
+        public virtual Usuario Usuario { get; set; }
         public virtual List<PedidoItem> Itens { get; set; } = [];
 
         public static List<EnumStatusPedido> StatusEmAberto = [EnumStatusPedido.Enviado, EnumStatusPedido.Criado, EnumStatusPedido.Confirmado];
