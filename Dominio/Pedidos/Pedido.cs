@@ -24,6 +24,27 @@ namespace Dominio.Pedidos
         public virtual List<PedidoItem> Itens { get; set; } = [];
 
         public static List<EnumStatusPedido> StatusEmAberto = [EnumStatusPedido.Enviado, EnumStatusPedido.Criado, EnumStatusPedido.Confirmado];
+
+        public void Confirmar()
+        {
+            Status = EnumStatusPedido.Confirmado;
+        }
+        public void Recusar()
+        {
+            Status = EnumStatusPedido.Recusado;
+        }
+        public void Enviar()
+        {
+            Status = EnumStatusPedido.Enviado;
+        }
+        public void Cancelar()
+        {
+            Status = EnumStatusPedido.Cancelado;
+        }
+        public void Entregar()
+        {
+            Status = EnumStatusPedido.Entregue;
+        }
     }
 
     public enum EnumStatusPedido

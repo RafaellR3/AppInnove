@@ -102,6 +102,78 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPut("{id}/Confirmar")]
+        public IActionResult Confirmar([FromRoute]Guid id)
+        {
+            try
+            {
+                _aplic.Confirmar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}/Cancelar")]
+        public IActionResult Cancelar([FromRoute] Guid id)
+        {
+            try
+            {
+                _aplic.Cancelar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}/Recusar")]
+        public IActionResult Recusar([FromRoute] Guid id)
+        {
+            try
+            {
+                _aplic.Recusar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        [HttpPut("{id}/Entregar")]
+        public IActionResult Entregar([FromRoute] Guid id)
+        {
+            try
+            {
+                _aplic.Entregar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}/Enviar")]
+        public IActionResult Enviar([FromRoute] Guid id)
+        {
+            try
+            {
+                _aplic.Enviar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }
 

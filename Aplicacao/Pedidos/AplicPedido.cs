@@ -98,5 +98,62 @@ namespace Aplicacao.Pedidos
             _repPedido.InserirPersistido(pedido);
         }
 
+        public void Confirmar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Confirmar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Cancelar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Cancelar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Recusar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Recusar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Enviar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Enviar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Entregar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Entregar();
+
+            _repPedido.Persistir();
+        }
+
+
+
     }
 }
