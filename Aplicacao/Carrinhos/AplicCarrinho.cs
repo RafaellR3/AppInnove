@@ -153,6 +153,7 @@ namespace Aplicacao.Carrinhos
                 throw new Exception($"Carrinho item de código {dto.CodigoCarrinhoItem} não localizado.");
 
             carrinhoItem.Quant = dto.Quant;
+            carrinhoItem.ValorTotal = carrinhoItem.Quant * carrinhoItem.PrecoUn;
 
             _repCarrinhoItem.Persistir();
 
