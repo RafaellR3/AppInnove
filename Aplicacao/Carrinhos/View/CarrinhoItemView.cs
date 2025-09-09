@@ -31,6 +31,7 @@ namespace Aplicacao.Carrinhos.View
                 Quant = item.Quant,
                 PrecoUn = item.PrecoUn,
                 DataCriacao = item.DataCriacao,
+                ValorTotal = item.ValorTotal,
                 Produto = ProdutoView.Novo(item.Produto)
             };
         }
