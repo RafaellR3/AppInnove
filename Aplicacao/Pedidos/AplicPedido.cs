@@ -50,6 +50,23 @@ namespace Aplicacao.Pedidos
             return view;
         }
 
+        public List<ListaPedidoView> PedidosPorUsuario(Guid codigoUsuario)
+        {
+
+            var pedidos = _repPedido.Where(p => p.CodigoUsuario == codigoUsuario).ToList();
+            var view = pedidos.Select(p => new ListaPedidoView
+            {
+                Numero = p.CodigoErp,
+                Data = p.DataCriacao,
+                Quant = p.Itens.Count(),
+                Total = p.Total,
+                Status = p.Status,
+                Itens = PedidoItemView.Novo(p.Itens)
+            }).ToList();
+
+            return view;
+        }
+
         public PedidoView PesquisarPorId(Guid id)
         {
             var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
@@ -64,7 +81,7 @@ namespace Aplicacao.Pedidos
                 Cidade = dto.Cidade,
                 CodigoUsuario = dto.CodigoUsuario,
                 Complemento = dto.Complemento,
-                NumeroEndereco = dto.NumeroEndereco,
+                NumeroEndereco = dto.Numero,
                 Rua = dto.Rua,
                 Total = dto.Total
             };
@@ -77,8 +94,66 @@ namespace Aplicacao.Pedidos
                 Quantidade = p.Quantidade,
                 Pedido = pedido
             }));
-
+            pedido.CodigoErp = DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString()+ DateTime.Now.Second.ToString();
             _repPedido.InserirPersistido(pedido);
         }
+
+        public void Confirmar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Confirmar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Cancelar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Cancelar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Recusar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Recusar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Enviar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Enviar();
+
+            _repPedido.Persistir();
+        }
+
+        public void Entregar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
+
+            pedido.Entregar();
+
+            _repPedido.Persistir();
+        }
+
+
+
     }
 }

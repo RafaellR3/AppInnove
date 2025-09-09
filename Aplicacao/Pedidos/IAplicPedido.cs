@@ -11,6 +11,12 @@ namespace Aplicacao.Pedidos
         void Novo(PedidoDto dto);
         List<ListaPedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario);
         List<ListaPedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario);
+        List<ListaPedidoView> PedidosPorUsuario(Guid codigoUsuario);
+        void Confirmar(Guid id); 
+        void Cancelar(Guid id);
+        void Recusar(Guid id); 
+        void Enviar(Guid id);
+        void Entregar(Guid id);
     }
 }
 
