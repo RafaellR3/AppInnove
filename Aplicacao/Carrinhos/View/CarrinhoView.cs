@@ -31,6 +31,7 @@ namespace Aplicacao.Carrinhos.View
                 DataAtualizacao = carrinho.DataAtualizacao,
                 DataCriacao = carrinho.DataCriacao,
                 Usuario = UsuarioView.Novo(carrinho.Usuario),
+                ValorTotal = carrinho.ValorTotal,
                 Itens = CarrinhoItemView.Novo(carrinho.Itens)
             };
         }
