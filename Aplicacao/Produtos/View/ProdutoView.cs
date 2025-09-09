@@ -15,6 +15,7 @@ namespace Aplicacao.Produtos.View
         public string UrlImagem { get; set; }
         public byte[] Imagem { get; set; }
         public bool Ativo { get; set; }
+        public Guid CodigoCategoria { get; set; }
 
         public static List<ProdutoView> Novo(List<Produto> produtos)
         {
@@ -37,7 +38,8 @@ namespace Aplicacao.Produtos.View
                 UpdatedAt = produto.DataAtualizacao,
                 Imagem = produto.Imagem,
                 UrlImagem = produto.UrlImagem,
-                Ativo = produto.Ativo
+                Ativo = produto.Ativo,
+                CodigoCategoria = produto.CodigoCategoria.Value
             };
         }
     }

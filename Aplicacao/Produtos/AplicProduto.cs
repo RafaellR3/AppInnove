@@ -33,7 +33,8 @@ namespace Aplicacao.Produtos
                 CreatedAt = p.DataCriacao,
                 UpdatedAt = p.DataAtualizacao,
                 Imagem = p.Imagem,
-                Ativo = p.Ativo
+                Ativo = p.Ativo,
+                CodigoCategoria = p.CodigoCategoria.Value
             })];
         }
 
