@@ -60,7 +60,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPut("{codigoUsuario}/{codigoEndereco}/RecuperarPorUsuario")]
+        [HttpPut("{codigoUsuario}/{codigoEndereco}/DefinirComoPadrao")]
         public IActionResult DefinirComoPadrao([FromRoute] Guid codigoUsuario, Guid codigoEndereco)
         {
             try
