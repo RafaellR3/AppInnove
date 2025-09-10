@@ -24,7 +24,7 @@ namespace Aplicacao.Enderecos
             return EnderecoUsuarioView.Novo(query.ToList());
         }
 
-        public void Novo(EnderecoUsuarioDto dto)
+        public EnderecoUsuarioView Novo(EnderecoUsuarioDto dto)
         {
             var endereco = new EnderecoUsuario
             {
@@ -44,9 +44,11 @@ namespace Aplicacao.Enderecos
             }
 
             _repEnderecoUsuario.InserirPersistido(endereco);
+
+            return EnderecoUsuarioView.Novo(endereco);
         }
 
-        public void DefinirComoPadrao(Guid codigoUsuario, Guid codigoEndereco) 
+        public EnderecoUsuarioView DefinirComoPadrao(Guid codigoUsuario, Guid codigoEndereco) 
         {
             var enderecosUsuario = _repEnderecoUsuario.Where(p => p.CodigoUsuario == codigoUsuario).ToList();
             var enderecoPadrao = enderecosUsuario.FirstOrDefault(p => p.Id == codigoEndereco);
@@ -56,6 +58,7 @@ namespace Aplicacao.Enderecos
             enderecoPadrao.Padrao = true;
 
             _repEnderecoUsuario.Persistir();
+            return EnderecoUsuarioView.Novo(enderecoPadrao);
         } 
     }
 }

@@ -7,7 +7,7 @@ namespace Aplicacao.Enderecos
     {
         List<EnderecoUsuarioView> Recuperar();
         List<EnderecoUsuarioView> RecuperarPorUsuario(Guid codigoUsuario);
-        void Novo(EnderecoUsuarioDto dto);
-        void DefinirComoPadrao(Guid codigoUsuario, Guid codigoEndereco);
+        EnderecoUsuarioView Novo(EnderecoUsuarioDto dto);
+        EnderecoUsuarioView DefinirComoPadrao(Guid codigoUsuario, Guid codigoEndereco);
     }
 }

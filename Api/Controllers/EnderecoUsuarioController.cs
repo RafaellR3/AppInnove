@@ -51,8 +51,8 @@ namespace Api.Controllers
         {
             try
             {
-                _aplic.Novo(dto);
-                return Ok();
+                var ret = _aplic.Novo(dto);
+                return Ok(ret);
             }
             catch (Exception e)
             {
@@ -65,9 +65,9 @@ namespace Api.Controllers
         {
             try
             {
-                _aplic.DefinirComoPadrao(codigoUsuario, codigoEndereco);
+                var ret = _aplic.DefinirComoPadrao(codigoUsuario, codigoEndereco);
 
-                return Ok();
+                return Ok(ret);
             }
             catch (Exception e)
             {
