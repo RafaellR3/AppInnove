@@ -42,6 +42,10 @@ namespace Repositorio.Config.Ef.Pedidos
             builder.HasOne(p => p.Pedido)
                 .WithMany(y => y.Itens)
                 .HasForeignKey(p => p.CodigoPedido);
+
+            builder.HasOne(p => p.Produto)
+                .WithMany()
+                .HasForeignKey(p => p.CodigoProduto);
         }
     }
 }

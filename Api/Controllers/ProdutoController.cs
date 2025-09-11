@@ -73,5 +73,20 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Route("RecuperarProdutosMaisVendidos")]
+        [HttpGet]
+        public IActionResult RecuperarProdutosMaisVendidos()
+        {
+            try
+            {
+                var ret = _aplic.RecuperarProdutosMaisVendidos();
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

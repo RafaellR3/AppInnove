@@ -1,4 +1,5 @@
 ﻿using Dominio.Infra;
+using Dominio.Produtos;
 
 namespace Dominio.Pedidos
 {
@@ -11,5 +12,6 @@ namespace Dominio.Pedidos
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public virtual Pedido Pedido { get; set; }
+        public virtual Produto Produto { get; set; }
     }
 }
