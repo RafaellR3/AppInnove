@@ -8,9 +8,11 @@ namespace Aplicacao.Produtos
     {
         private readonly IRepProduto _repProduto;
         private readonly IRepPedidoItem _repPedidoItem;
-        public AplicProduto(IRepProduto repProduto)
+        public AplicProduto(IRepProduto repProduto, 
+                            IRepPedidoItem repPedidoItem)
         {
             _repProduto = repProduto;
+            _repPedidoItem = repPedidoItem;
         }
 
         public List<ProdutoView> Recuperar()
