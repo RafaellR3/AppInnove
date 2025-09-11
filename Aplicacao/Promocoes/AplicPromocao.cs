@@ -13,7 +13,7 @@ namespace Aplicacao.Promocoes
 
         public List<PromocaoView> Recuperar()
         {
-            var query = _repPromocao.Where(p => p.Ativo).ToList();
+            var query = _repPromocao.Where(p => p.Ativo);
             return PromocaoView.Novo(query.ToList());
         }
 
