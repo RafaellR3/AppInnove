@@ -12,5 +12,6 @@ namespace Aplicacao.Carrinhos
         CarrinhoView AlterarQuantidadeItem(AlterarQuantItemCarrinhoDto dto);
         List<CarrinhoCompraItemView> RecuperarCarrinhoItensPorUsuario(Guid codigoUsuario);
         CarrinhoView RemoverItem(Guid codigo);
+        CarrinhoView LimparCarrinhoUsuario(Guid codigoUsuario);
     }
 }

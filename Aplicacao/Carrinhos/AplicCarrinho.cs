@@ -180,5 +180,22 @@ namespace Aplicacao.Carrinhos
 
             return CarrinhoView.Novo(carrinho);
         }
+
+        public CarrinhoView LimparCarrinhoUsuario(Guid codigoUsuario)
+        {
+            var carrinho = _repCarrinho.FirstOrDefault(p => p.CodigoUsuario == codigoUsuario);
+            if (carrinho == null)
+                throw new Exception($"Registro não localizado.");
+            
+            carrinho.Itens.ForEach(p => _repCarrinhoItem.Remover(p));
+
+            _repCarrinhoItem.Persistir();
+
+            carrinho.Totalizar();
+
+            _repCarrinho.Persistir();
+
+            return CarrinhoView.Novo(carrinho);
+        }
     }
 }

@@ -104,5 +104,20 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Route("LimparCarrinhoUsuario/{codigoUsuario}")]
+        [HttpDelete]
+        public IActionResult LimparCarrinhoUsuario([FromRoute] Guid codigoUsuario)
+        {
+            try
+            {
+                var ret = _aplic.RemoverItem(codigoUsuario);
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
