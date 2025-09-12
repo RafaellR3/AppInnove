@@ -111,7 +111,7 @@ namespace Api.Controllers
         {
             try
             {
-                var ret = _aplic.RemoverItem(codigoUsuario);
+                var ret = _aplic.LimparCarrinhoUsuario(codigoUsuario);
                 return Ok(ret);
             }
             catch (Exception e)
