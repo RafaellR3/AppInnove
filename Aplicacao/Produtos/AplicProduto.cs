@@ -56,13 +56,22 @@ namespace Aplicacao.Produtos
 
         public List<ProdutoView> RecuperarProdutosMaisVendidos()
         {
-            var itens = _repPedidoItem.Recuperar().GroupBy(p => new { p.Produto}).Select(item => new
-            {
-                Item = item.Key.Produto,
-                Quant = item.Sum(x => x.Quantidade)
-            }).OrderByDescending(x => x.Quant).Take(10).ToList();
+            var items = _repPedidoItem
+                    .Recuperar()
+                    .GroupBy(p => p.Produto.Id) // agrupa pelo Id (chave escalar)
+                    .Select(item => new
+                    {
+                        ProdutoId = item.Key,
+                        Quant = item.Sum(x => x.Quantidade)
+                    })
+                    .OrderByDescending(x => x.Quant)
+                    .Take(10)
+                    .ToList();
 
-            List<Produto> produtos = itens.Select(p => p.Item).ToList();
+            // agora busca os produtos pelo Id
+            var produtos = _repProduto
+                .Where(p => items.Select(i => i.ProdutoId).Contains(p.Id))
+                .ToList();
 
             return ProdutoView.Novo(produtos);
         }
