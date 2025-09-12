@@ -1,4 +1,5 @@
-﻿using Dominio.Infra;
+﻿using Aplicacao.Produtos.View;
+using Dominio.Infra;
 
 namespace Dominio.Pedidos
 {
@@ -10,6 +11,8 @@ namespace Dominio.Pedidos
         public int Quantidade { get; set; }
         public decimal PrecoUn { get; set; }
         public DateTime DataCriacao { get; set; }
+
+        public ProdutoView Produto { get; set; }
 
         public static List<PedidoItemView> Novo(List<PedidoItem> itens)
         {
@@ -27,7 +30,8 @@ namespace Dominio.Pedidos
                 CodigoProduto = item.CodigoProduto,
                 Quantidade = item.Quantidade,
                 PrecoUn = item.PrecoUn, 
-                DataCriacao = item.DataCriacao                
+                DataCriacao = item.DataCriacao,
+                Produto = ProdutoView.Novo(item.Produto)
             };
         }
     }
