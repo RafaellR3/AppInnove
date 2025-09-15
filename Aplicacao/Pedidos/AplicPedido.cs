@@ -1,14 +1,22 @@
 ﻿using Aplicacao.Pedidos.View;
 using Dominio.Pedidos;
+using Dominio.Produtos;
+using Dominio.Usuarios;
 
 namespace Aplicacao.Pedidos
 {
     public class AplicPedido: IAplicPedido
     {
         private readonly IRepPedido _repPedido;
-        public AplicPedido(IRepPedido repPedido)
+        private readonly IRepUsuario _repUsuario;
+        private readonly IRepProduto _repProduto;
+        public AplicPedido(IRepPedido repPedido,
+                           IRepUsuario repUsuario,
+                           IRepProduto repProduto)
         {
             _repPedido = repPedido;
+            _repUsuario = repUsuario;
+            _repProduto = repProduto;
         }
 
         public List<PedidoView> Recuperar()
@@ -92,9 +100,11 @@ namespace Aplicacao.Pedidos
                 CodigoProduto = p.CodigoProduto,
                 PrecoUn = p.PrecoUn,
                 Quantidade = p.Quantidade,
-                Pedido = pedido
+                Pedido = pedido,
+                Produto = _repProduto.FirstOrDefault(i => i.Id == p.CodigoProduto)
             }));
             pedido.CodigoErp = DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString()+ DateTime.Now.Second.ToString();
+            pedido.Usuario = _repUsuario.FirstOrDefault(p => p.Id == pedido.CodigoUsuario);
             _repPedido.InserirPersistido(pedido);
 
             return PedidoView.Novo(pedido);
