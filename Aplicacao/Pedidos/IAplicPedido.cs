@@ -11,6 +11,7 @@ namespace Aplicacao.Pedidos
         List<ListaPedidoView> PedidosEmAbertoPorUsuario(Guid codigoUsuario);
         List<ListaPedidoView> PedidosEmAberto();
         List<ListaPedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario);
+        List<ListaPedidoView> PedidosFinalizados();
         List<ListaPedidoView> PedidosPorUsuario(Guid codigoUsuario);
         void Confirmar(Guid id); 
         void Cancelar(Guid id);

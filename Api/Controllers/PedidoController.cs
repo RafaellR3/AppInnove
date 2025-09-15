@@ -89,6 +89,20 @@ namespace Api.Controllers
             }
         }
 
+        [Route("PedidosFinalizados")]
+        [HttpGet]
+        public IActionResult PedidosFinalizados()
+        {
+            try
+            {
+                var ret = _aplic.PedidosFinalizados();
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         [Route("{codigoUsuario}/PedidosPorUsuario")]
         [HttpGet]
         public IActionResult PedidosPorUsuario([FromRoute] Guid codigoUsuario)
