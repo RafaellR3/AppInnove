@@ -59,6 +59,21 @@ namespace Api.Controllers
             }
         }
 
+        [Route("PedidosEmAberto")]
+        [HttpGet]
+        public IActionResult PedidosEmAberto()
+        {
+            try
+            {
+                var ret = _aplic.PedidosEmAberto();
+                return Ok(ret);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [Route("{codigoUsuario}/PedidosFinalizadosPorUsuario")]
         [HttpGet]
         public IActionResult PedidosFinalizadosPorUsuario([FromRoute] Guid codigoUsuario)

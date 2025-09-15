@@ -40,6 +40,21 @@ namespace Aplicacao.Pedidos
 
             return view;
         }
+        public List<ListaPedidoView> PedidosEmAberto()
+        {
+            var pedidos = _repPedido.Where(p =>Pedido.StatusEmAberto.Contains(p.Status)).ToList();
+            var view = pedidos.Select(p => new ListaPedidoView
+            {
+                Numero = p.CodigoErp,
+                Data = p.DataCriacao,
+                Quant = p.Itens.Count(),
+                Total = p.Total,
+                Status = p.Status,
+                Itens = PedidoItemView.Novo(p.Itens)
+            }).ToList();
+
+            return view;
+        }
 
         public List<ListaPedidoView> PedidosFinalizadosPorUsuario(Guid codigoUsuario)
         {
