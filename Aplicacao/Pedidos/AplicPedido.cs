@@ -31,7 +31,7 @@ namespace Aplicacao.Pedidos
             var view = pedidos.Select(p => new ListaPedidoView
             {
                 Numero = p.CodigoErp,
-                Data = p.DataCriacao.Date,
+                Data = p.DataCriacao,
                 Quant = p.Itens.Count(),
                 Total = p.Total,
                 Status = p.Status,
