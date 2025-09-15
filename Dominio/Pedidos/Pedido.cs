@@ -45,6 +45,10 @@ namespace Dominio.Pedidos
         {
             Status = EnumStatusPedido.Entregue;
         }
+        public void Finalizar()
+        {
+            Status = EnumStatusPedido.Finalizado;
+        }
     }
 
     public enum EnumStatusPedido
@@ -60,6 +64,8 @@ namespace Dominio.Pedidos
         [Description("Cancelado")]
         Cancelado = 4,
         [Description("Recusado")]
-        Recusado = 5
+        Recusado = 5,
+        [Description("Finalizado")]
+        Finalizado = 6
     }
 }

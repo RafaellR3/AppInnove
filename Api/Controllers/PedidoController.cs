@@ -94,8 +94,8 @@ namespace Api.Controllers
         {
             try
             {
-                _aplic.Novo(dto);
-                return Ok();
+                var ret = _aplic.Novo(dto);
+                return Ok(ret);
             }
             catch (Exception e)
             {
@@ -174,6 +174,19 @@ namespace Api.Controllers
             }
         }
 
+        [HttpPut("{id}/Finalizar")]
+        public IActionResult Finalizar([FromRoute] Guid id)
+        {
+            try
+            {
+                _aplic.Finalizar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
 

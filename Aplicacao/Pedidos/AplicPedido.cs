@@ -73,7 +73,7 @@ namespace Aplicacao.Pedidos
             return PedidoView.Novo(pedido);
         }
 
-        public void Novo(PedidoDto dto)
+        public PedidoView Novo(PedidoDto dto)
         {
             var pedido = new Pedido
             {
@@ -96,6 +96,8 @@ namespace Aplicacao.Pedidos
             }));
             pedido.CodigoErp = DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString()+ DateTime.Now.Second.ToString();
             _repPedido.InserirPersistido(pedido);
+
+            return PedidoView.Novo(pedido);
         }
 
         public void Confirmar(Guid id)
@@ -153,7 +155,16 @@ namespace Aplicacao.Pedidos
             _repPedido.Persistir();
         }
 
+        public void Finalizar(Guid id)
+        {
+            var pedido = _repPedido.FirstOrDefault(p => p.Id == id);
+            if (pedido == null)
+                throw new Exception("Pedido não localizado.");
 
+            pedido.Finalizar();
+
+            _repPedido.Persistir();
+        }
 
     }
 }
