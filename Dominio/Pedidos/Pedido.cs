@@ -23,7 +23,7 @@ namespace Dominio.Pedidos
         public virtual Usuario Usuario { get; set; }
         public virtual List<PedidoItem> Itens { get; set; } = [];
 
-        public static List<EnumStatusPedido> StatusEmAberto = [EnumStatusPedido.Enviado, EnumStatusPedido.Criado, EnumStatusPedido.Confirmado];
+        public static List<EnumStatusPedido> StatusEmAberto = [EnumStatusPedido.Enviado, EnumStatusPedido.Criado, EnumStatusPedido.Confirmado, EnumStatusPedido.Entregue];
 
         public void Confirmar()
         {
