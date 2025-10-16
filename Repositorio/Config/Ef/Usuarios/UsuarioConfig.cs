@@ -53,7 +53,11 @@ namespace Repositorio.Config.Ef.Usuarios
             builder.Property(u => u.UpdatedAt)
                 .HasColumnName("updated_at")
                 .HasDefaultValueSql("NOW()");
-        
+
+            builder.Property(u => u.Cpf)
+                .HasColumnName("cpf");
+
+
         }
     }
 }

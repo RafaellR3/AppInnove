@@ -12,7 +12,8 @@ namespace Aplicacao.Usuarios.View
         public string Telefone { get; set; }
         public bool Ativo { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; } 
+        public DateTime UpdatedAt { get; set; }
+        public int Cpf { get; set; }
 
         public static List<UsuarioView> Novo(List<Usuario> usuarios)
         {
@@ -32,7 +33,8 @@ namespace Aplicacao.Usuarios.View
                 Nome = usuario.Nome,
                 SenhaHash = usuario.SenhaHash,
                 UpdatedAt = usuario.UpdatedAt,
-                Telefone = usuario.Telefone
+                Telefone = usuario.Telefone,
+                Cpf =  usuario.Cpf                
             };
         }
     }

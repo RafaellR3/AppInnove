@@ -41,7 +41,8 @@ namespace Aplicacao.Usuarios
                 Nome = dto.Nome,
                 Email = dto.Email,
                 SenhaHash = dto.Senha,
-                Telefone = dto.Telefone
+                Telefone = dto.Telefone,
+                Cpf = dto.Cpf
             };
 
             _repUsuario.InserirPersistido(usuario);
