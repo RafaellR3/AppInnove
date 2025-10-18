@@ -12,7 +12,7 @@ namespace Dominio.Usuarios
         public bool Ativo { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-        public int Cpf { get; set; }
+        public string Cpf { get; set; }
 
     }
     

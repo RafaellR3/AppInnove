@@ -48,5 +48,10 @@ namespace Aplicacao.Usuarios
             _repUsuario.InserirPersistido(usuario);
             _repUsuario.Persistir();
         }
+
+        public void AtualizarSenha()
+        {
+
+        }
     }   
 }

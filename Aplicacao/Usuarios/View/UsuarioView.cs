@@ -13,7 +13,7 @@ namespace Aplicacao.Usuarios.View
         public bool Ativo { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public int Cpf { get; set; }
+        public string Cpf { get; set; }
 
         public static List<UsuarioView> Novo(List<Usuario> usuarios)
         {
