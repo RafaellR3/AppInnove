@@ -157,3 +157,13 @@ dkms.conf
 /Api/Controllers/obj/project.nuget.cache
 /Api/obj/Api.csproj.nuget.g.targets
 /obj/Docker
+/Aplicacao/obj/Debug/net8.0/Aplicacao.GlobalUsings.g.cs
+/Dominio/obj/Debug/net8.0/Dominio.GlobalUsings.g.cs
+/Repositorio/obj/Debug/net8.0/Repositorio.GlobalUsings.g.cs
+/Repositorio/obj/Repositorio.csproj.nuget.g.props
+/Api/Api.csproj
+/Api/obj/Debug/net8.0/EndpointInfo
+/Api/obj/Debug/net8.0/Api.genruntimeconfig.cache
+/Api/obj/Debug/net8.0/Api.GlobalUsings.g.cs
+/Api/obj/Debug/net8.0/ApiEndpoints.json
+/Api/obj/Api.csproj.nuget.g.props
