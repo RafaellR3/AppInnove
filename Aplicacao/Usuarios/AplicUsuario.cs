@@ -34,7 +34,7 @@ namespace Aplicacao.Usuarios
             return UsuarioView.Novo(usuario);
         }
 
-        public void Cadastrar(CadastrarUsuarioDto dto)
+        public UsuarioView Cadastrar(CadastrarUsuarioDto dto)
         {
             var usuario = new Usuario
             {
@@ -45,8 +45,10 @@ namespace Aplicacao.Usuarios
                 Cpf = dto.Cpf
             };
 
-            _repUsuario.InserirPersistido(usuario);
+             _repUsuario.InserirPersistido(usuario);
             _repUsuario.Persistir();
+
+            return UsuarioView.Novo(usuario);
         }
 
         public void AtualizarSenha()

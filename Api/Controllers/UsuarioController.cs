@@ -49,8 +49,8 @@ namespace Api.Controllers
         {
             try
             {
-                _aplic.Cadastrar(dto);
-                return Ok();
+                var ret = _aplic.Cadastrar(dto);
+                return Ok(ret);
             }
             catch (Exception e)
             {
